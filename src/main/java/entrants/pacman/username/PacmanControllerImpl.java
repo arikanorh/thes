@@ -9,12 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+
 /*
- * This is the class you need to modify for your entry. In particular, you need to
- * fill in the getMove() method. Any additional classes you write should either
- * be placed in this package or sub-packages (e.g., entrants.pacman.username).
+	REAL IMPLEMENTATION
  */
-public class MyPacMan extends PacmanController
+public class PacmanControllerImpl extends PacmanController
 {
 	private static final int MIN_DISTANCE = 20;
 	private MOVE myMove = MOVE.NEUTRAL;
@@ -30,25 +29,25 @@ public class MyPacMan extends PacmanController
 		MOVE[] moves = game.getPossibleMoves(current, game.getPacmanLastMoveMade());
 
 		// Strategy 1: Adjusted for PO
-		for (Constants.GHOST ghost : Constants.GHOST.values())
-		{
-			// If can't see these will be -1 so all fine there
-			if (game.getGhostEdibleTime(ghost) == 0 && game.getGhostLairTime(ghost) == 0)
-			{
-				int ghostLocation = game.getGhostCurrentNodeIndex(ghost);
-				if (ghostLocation != -1)
-				{
-					ghostsLastSeenIndex.put(ghost, ghostLocation);
-					ghostsLastSeenGameTime.put(ghost, currentGameTime);
-					Integer distanceToGhost = game.getShortestPathDistance(current, ghostLocation);
-					if (distanceToGhost < 20)
-					{
-						return game.getNextMoveTowardsTarget(current, ghostLocation, Constants.DM.PATH);
-					}
-				}
-			}
-
-		}
+//		for (Constants.GHOST ghost : Constants.GHOST.values())
+//		{
+//			// If can't see these will be -1 so all fine there
+//			if (game.getGhostEdibleTime(ghost) == 0 && game.getGhostLairTime(ghost) == 0)
+//			{
+//				int ghostLocation = game.getGhostCurrentNodeIndex(ghost);
+//				if (ghostLocation != -1)
+//				{
+//					ghostsLastSeenIndex.put(ghost, ghostLocation);
+//					ghostsLastSeenGameTime.put(ghost, currentGameTime);
+//					Integer distanceToGhost = game.getShortestPathDistance(current, ghostLocation);
+//					if (distanceToGhost < 20)
+//					{
+//						return game.getNextMoveTowardsTarget(current, ghostLocation, Constants.DM.PATH); // TODO: Move away from target
+//					}
+//				}
+//			}
+//
+//		}
 
 		if (moves.length > 0)
 		{
